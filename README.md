@@ -25,24 +25,29 @@ LangChain4j、SpotBugs、DeerFlow 等开源项目的贡献者。
 
 ## 🏆 Merged Contributions · 已合并的贡献
 
+Source-code contributions with tests, merged into widely used open-source projects.
+均为带测试的源码贡献，已合并进广泛使用的开源项目。
+
 ### [LangChain4j](https://github.com/langchain4j/langchain4j) ![stars](https://img.shields.io/github/stars/langchain4j/langchain4j?style=flat&logo=github)
 
 | PR | What it does · 内容 |
 |---|---|
-| [#5460](https://github.com/langchain4j/langchain4j/pull/5460) | Fix broken Anthropic documentation links · 修复 Anthropic 文档失效链接 |
-| [#5690](https://github.com/langchain4j/langchain4j/pull/5690) | Add `jsonSchema()` to Byte/Short/BigInteger/BigDecimal output parsers · 为数值类输出解析器补充 `jsonSchema()` |
-| [#5880](https://github.com/langchain4j/langchain4j/pull/5880) | Add `generateContentConfigCustomizer` to `GoogleGenAiBatchChatModel` · 为 Google GenAI 批量模型增加配置定制入口 |
-| [#5924](https://github.com/langchain4j/langchain4j/pull/5924) | Complete A2A response future exceptionally on interrupted task states · A2A 任务中断时让响应异常完成 |
-| [#6021](https://github.com/langchain4j/langchain4j/pull/6021) | Read error response body as UTF-8 without reassembling line separators · 以 UTF-8 读取错误响应体，不再重组换行符 |
+| [#5690](https://github.com/langchain4j/langchain4j/pull/5690) | **Structured outputs for numeric parsers.** Added `jsonSchema()` to the Byte/Short/BigInteger/BigDecimal output parsers so they match Integer/Long/Float/Double.<br>**数值类输出解析器支持结构化输出**：为 Byte/Short/BigInteger/BigDecimal 补上 `jsonSchema()`，与其他数值解析器对齐。 |
+| [#5880](https://github.com/langchain4j/langchain4j/pull/5880) | **Config escape hatch for Google GenAI batch model.** Added `generateContentConfigCustomizer` to `GoogleGenAiBatchChatModel`, completing the option already available on the sync and streaming models.<br>**Google GenAI 批量模型配置定制**：补齐同步、流式模型已有的底层参数定制入口。 |
+| [#5924](https://github.com/langchain4j/langchain4j/pull/5924) | **Fix A2A hang on interrupted tasks.** When a remote agent enters `input-required` / `auth-required`, the response future now completes exceptionally (new `A2ATaskInterruptedException`) instead of hanging forever.<br>**修复 A2A 任务中断时的挂起**：任务进入 `input-required` / `auth-required` 时，响应 future 以异常结束，不再一直等待。 |
+| [#6021](https://github.com/langchain4j/langchain4j/pull/6021) | **Fix garbled error messages.** `ApacheHttpClient` decoded error bodies with the JVM default charset and rewrote line separators; now reads UTF-8 and preserves them.<br>**修复错误信息乱码**：错误响应体改用 UTF-8 读取并保留原始换行，不再依赖 JVM 默认字符集。 |
 
-### Other projects · 其他项目
+### [SpotBugs](https://github.com/spotbugs/spotbugs) ![stars](https://img.shields.io/github/stars/spotbugs/spotbugs?style=flat&logo=github)
 
-| Project | PR | What it does · 内容 |
-|---|---|---|
-| [SpotBugs](https://github.com/spotbugs/spotbugs) ![stars](https://img.shields.io/github/stars/spotbugs/spotbugs?style=flat&logo=github) | [#4288](https://github.com/spotbugs/spotbugs/pull/4288) | Fix resource tracking after `PrintWriter.append` · 修复 `PrintWriter.append` 之后的资源跟踪 |
-| [DeerFlow](https://github.com/bytedance/deer-flow) ![stars](https://img.shields.io/github/stars/bytedance/deer-flow?style=flat&logo=github) | [#5111](https://github.com/bytedance/deer-flow/pull/5111) | Improve local environment detection guidance · 改进本地环境检测提示 |
-| [CodeWhale](https://github.com/codewhale-hq/Codewhale) | [#3053](https://github.com/codewhale-hq/Codewhale/pull/3053) | Add "Upgrading from deepseek-tui" section to README · README 增加升级指引 |
-| [spring-transactional-outbox-kafka](https://github.com/KHolodilin/spring-transactional-outbox-kafka) | [#51](https://github.com/KHolodilin/spring-transactional-outbox-kafka/pull/51) | Make the notification consumer idempotent · 让通知消费者具备幂等性 |
+| PR | What it does · 内容 |
+|---|---|
+| [#4288](https://github.com/spotbugs/spotbugs/pull/4288) | **Fix a false positive in resource-leak detection.** `writer = writer.append(...)` made `FindOpenStream` report a leak even when the writer was closed in `finally`; the stream-modeling visitor now preserves the receiver's resource identity for the `PrintWriter.append` overloads, and only for `PrintWriter` itself so subclass overrides are not misjudged.<br>**修复资源泄漏检测的误报**：`PrintWriter.append` 之后资源标识丢失导致误报，现保留接收者的资源标识，并限定只对 `PrintWriter` 本身生效，避免误判子类重写。 |
+
+### [DeerFlow](https://github.com/bytedance/deer-flow) ![stars](https://img.shields.io/github/stars/bytedance/deer-flow?style=flat&logo=github)
+
+| PR | What it does · 内容 |
+|---|---|
+| [#5111](https://github.com/bytedance/deer-flow/pull/5111) | **Make the sandbox agent inspect, not guess.** With host Bash enabled, the agent now probes the real environment (`uname -s`, `sw_vers`, …) and gets actionable guidance when a host path is blocked, instead of repeating the same rejected probe.<br>**让沙箱 agent 以工具证据而非假设作答**：按真实命令探测运行环境，宿主机路径被拦截时给出可执行的替代指引，避免重复同一个被拒绝的探测。 |
 
 ### 🔄 In review · 审核中
 
