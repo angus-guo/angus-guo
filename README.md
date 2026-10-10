@@ -58,7 +58,11 @@ LangChain4j、SpotBugs、DeerFlow 等开源项目的贡献者。
 
 | Project | Description · 简介 |
 |---|---|
+| [gps-code](https://github.com/angus-guo/gps-code) | A Chinese-first TUI code agent that helps developers understand unfamiliar codebases, with read-only tools, confirmed command execution and diff-previewed safe edits · 中文优先的 TUI code agent，帮助理解陌生代码库，支持只读检索、确认后执行命令、带 diff 预览的安全编辑 |
 | [dsh-deepseek-balance](https://github.com/angus-guo/dsh-deepseek-balance) | DeepSeek balance and session cost plugin for the dsh web GUI · dsh 网页界面的 DeepSeek 余额与会话成本插件 |
+| [poem4u](https://github.com/angus-guo/poem4u) | Chinese poem generator (Spring Boot + TypeScript) that validates line count, character count and name coverage before returning · 中文诗词生成应用，返回前校验行数、字数与嵌字要求 |
+| [claude-key-panel](https://github.com/angus-guo/claude-key-panel) | Visual panel for managing and switching multiple Claude keys · 管理切换多个 Claude key 的可视化面板 |
+| [whack-a-wole](https://github.com/angus-guo/whack-a-wole) | Whack-a-mole web game in pure HTML/CSS/JS with 10 levels · 纯前端打地鼠小游戏，共 10 关 |
 
 ---
 
